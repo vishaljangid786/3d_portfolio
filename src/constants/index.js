@@ -24,14 +24,13 @@ import {
   tailwindcss,
   threads,
   typescript,
+  shiv,
+  instagram,
+  socket,
+  expo,
 } from "../assets/icons";
 
 export const skills = [
-  {
-    imageUrl: css,
-    name: "CSS",
-    type: "Frontend",
-  },
   {
     imageUrl: express,
     name: "Express",
@@ -48,34 +47,9 @@ export const skills = [
     type: "Version Control",
   },
   {
-    imageUrl: html,
-    name: "HTML",
-    type: "Frontend",
-  },
-  {
-    imageUrl: javascript,
-    name: "JavaScript",
-    type: "Frontend",
-  },
-  {
     imageUrl: mongodb,
     name: "MongoDB",
     type: "Database",
-  },
-  {
-    imageUrl: motion,
-    name: "Motion",
-    type: "Animation",
-  },
-  {
-    imageUrl: mui,
-    name: "Material-UI",
-    type: "Frontend",
-  },
-  {
-    imageUrl: nextjs,
-    name: "Next.js",
-    type: "Frontend",
   },
   {
     imageUrl: nodejs,
@@ -88,18 +62,18 @@ export const skills = [
     type: "Frontend",
   },
   {
-    imageUrl: redux,
-    name: "Redux",
-    type: "State Management",
-  },
-  {
-    imageUrl: sass,
-    name: "Sass",
+    imageUrl: tailwindcss,
+    name: "Tailwind CSS",
     type: "Frontend",
   },
   {
-    imageUrl: tailwindcss,
-    name: "Tailwind CSS",
+    imageUrl: socket,
+    name: "Socket.io",
+    type: "Backend",
+  },
+  {
+    imageUrl: expo,
+    name: "Expo",
     type: "Frontend",
   },
   {
@@ -111,59 +85,20 @@ export const skills = [
 
 export const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
-    iconBg: "#accbe1",
-    date: "March 2020 - April 2021",
+    title: "Full Stack Developer Intern",
+    company_name: "ShivGuru Software", // yaha apni company ka real naam daal dena
+    icon: shiv, // apna logo ya placeholder
+    iconBg: "#2b77e7",
+    date: "Jan 2025 - Apr 2025",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
-    iconBg: "#fbc3bc",
-    date: "Jan 2021 - Feb 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
-    iconBg: "#b7e4c7",
-    date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#a2d2ff",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developed and maintained responsive web applications using React.js for frontend and Node.js with Express for backend.",
+      "Designed and integrated RESTful APIs and connected applications with MongoDB for efficient data management.",
+      "Implemented authentication, form validation, and CRUD functionalities for real-world projects.",
+      "Collaborated with senior developers to optimize performance and improve user experience.",
+      "Gained hands-on experience in deployment, version control (Git), and debugging production-level issues.",
     ],
   },
 ];
-
 export const socialLinks = [
   {
     name: "Contact",
@@ -173,62 +108,77 @@ export const socialLinks = [
   {
     name: "GitHub",
     iconUrl: github,
-    link: "https://github.com/YourGitHubUsername",
+    link: "https://github.com/vishaljangid786",
   },
   {
     name: "LinkedIn",
     iconUrl: linkedin,
-    link: "https://www.linkedin.com/in/YourLinkedInUsername",
+    link: "https://www.linkedin.com/in/vishaljangid786",
+  },
+  {
+    name: "Instagram",
+    iconUrl: instagram,
+    link: "https://www.instagram.com/__vishaljangid_",
   },
 ];
-
 export const projects = [
   {
     iconUrl: snapgram,
     theme: "btn-back-pink",
-    name: "Vk Marketing ",
+    name: "Vk Marketing",
     description:
-      "Built a marketing app for customers and sellers to make profits.",
+      "Developed a full-featured marketing platform that connects customers and sellers, enabling product promotions, lead generation, and revenue growth.",
+    skills: ["React.js", "Node.js", "MongoDB", "Stripe"],
     link: "https://vkallinmarketing.com/",
+    github: "https://github.com/vishaljangid786/forever",
   },
   {
     iconUrl: pricewise,
     theme: "btn-back-red",
     name: "Vishal Portfolio",
     description:
-      "Developed a web application that gives details and provides experience in his portfolio.",
-    link: "https://3dprojectvishal.netlify.app/",
+      "Designed and built a responsive personal portfolio website showcasing projects, technical skills, and professional experience with smooth UI interactions.",
+    skills: ["React.js", "Tailwind CSS", "Framer Motion"],
+    link: "https://vishal-jangid-portfolio.netlify.app/",
+    github: "https://github.com/vishaljangid786/macos-portfolio",
   },
   {
     iconUrl: threads,
     theme: "btn-back-green",
-    name: "Doze Studio",
+    name: "iPhone 15 Pro Website Clone",
     description:
-      "Created a app using canvas and web animations using gsap and locomotive framework in simple html css.",
-    link: "https://doze-studio.netlify.app/",
+      "Created a visually rich Apple-inspired landing page using advanced animations, canvas effects, and smooth scrolling experiences.",
+    skills: ["HTML", "CSS", "GSAP", "Locomotive Scroll"],
+    link: "https://apple-ios-iphone15.netlify.app/",
+    github: "https://github.com/vishaljangid786/iphone",
+  },
+  {
+    iconUrl: estate,
+    theme: "btn-back-black",
+    name: "3D T-Shirt Customizer",
+    description:
+      "Developed an interactive 3D product customization app allowing users to modify colors, textures, and designs in real-time.",
+    skills: ["Three.js", "React Three Fiber", "Tailwind CSS"],
+    link: "https://t-shirt-sell.netlify.app/",
+    github: "https://github.com/vishaljangid786/t-shirt-sell",
+  },
+  {
+    iconUrl: summiz,
+    theme: "btn-back-yellow",
+    name: "Gaming Landing Page",
+    description:
+      "Designed a high-quality animated gaming website with modern UI, smooth transitions, and immersive visual effects.",
+    skills: ["React.js", "GSAP", "CSS Animations"],
+    link: "https://awwards.netlify.app/",
+    github: "https://github.com/vishaljangid786/awwards_winnning",
   },
   {
     iconUrl: car,
     theme: "btn-back-blue",
     name: "Shopify Ecommerce App",
     description:
-      "Designed and built a mobile app for purchasing premium clothing for kids, men and women.",
+      "Built a modern eCommerce web application for browsing and purchasing clothing products with cart functionality and clean UI design.",
+    skills: ["React.js", "Redux", "Firebase"],
     link: "https://shopify-purchase.netlify.app/",
-  },
-  {
-    iconUrl: estate,
-    theme: "btn-back-black",
-    name: "Forest Portfolio",
-    description:
-      "Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.",
-    link: "https://portfolio-others-blue.netlify.app/",
-  },
-  {
-    iconUrl: summiz,
-    theme: "btn-back-yellow",
-    name: "Penguin Portfolio",
-    description:
-      "App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.",
-    link: "https://portfolio-other-dark.netlify.app/",
   },
 ];

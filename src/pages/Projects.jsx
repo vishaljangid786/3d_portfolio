@@ -1,68 +1,205 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { CTA } from "../components";
-import { projects } from "../constants";
+import { projects } from "../constants"; // ❗ Static projects (old content)
 import { arrow } from "../assets/icons";
 
 const Projects = () => {
+  const [apiProjects, setApiProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch(
+          "https://my-portfolio-backend-one-tau.vercel.app/api/projects",
+        );
+        const data = await res.json();
+
+        if (data.success) {
+          setApiProjects(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching API projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
   return (
-    <section className='max-container'>
-      <h1 className='head-text'>
+    <section className="max-container">
+      <h1 className="head-text">
         My{" "}
-        <span className='font-semibold blue-gradient_text drop-shadow'>
+        <span className="font-semibold blue-gradient_text drop-shadow">
           Projects
         </span>
       </h1>
 
-      <p className='mt-2 leading-relaxed text-slate-500'>
-        I've embarked on numerous projects throughout the years, but these are
-        the ones I hold closest to my heart. Many of them are open-source, so if
-        you come across something that piques your interest, feel free to
-        explore the codebase and contribute your ideas for further enhancements.
-        Your collaboration is highly valued!
+      <p className="mt-2 leading-relaxed text-slate-500">
+        I've embarked on numerous projects throughout the years, but these are the ones I hold closest to my heart. Many of them are open-source, so if you come across something that piques your interest, feel free to explore the codebase and contribute your ideas for further enhancements.
       </p>
 
-      <div className='flex flex-wrap gap-16 my-20'>
-        {projects.map((project) => (
-          <div className='lg:w-[400px] w-full' key={project.name}>
-            <div className='w-12 h-12 block-container'>
-              <div className={`btn-back rounded-xl ${project.theme}`} />
-              <div className='flex items-center justify-center btn-front rounded-xl'>
-                <img
-                  src={project.iconUrl}
-                  alt='threads'
-                  className='object-contain w-1/2 h-1/2'
-                />
-              </div>
-            </div>
+      <hr className="border-slate-200 my-10" />
 
-            <div className='flex flex-col mt-5'>
-              <h4 className='text-2xl font-semibold font-poppins'>
-                {project.name}
-              </h4>
-              <p className='mt-2 text-slate-500'>{project.description}</p>
-              <div className='flex items-center gap-2 mt-5 font-poppins'>
-                <Link
-                  to={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='font-semibold text-blue-600'
-                >
-                  Live Link
-                </Link>
-                <img
-                  src={arrow}
-                  alt='arrow'
-                  className='object-contain w-4 h-4'
-                />
+      {/* ✅ OLD STATIC PROJECTS (UNCHANGED) */}
+      <div>
+        <h3 className="subhead-text">
+          My  Web
+          <span className="font-semibold pl-2 blue-gradient_text drop-shadow">
+            Projects
+          </span>
+        </h3>
+
+        <div className="flex flex-wrap gap-16 my-10">
+          {projects.map((project) => (
+            <div className="lg:w-[400px] w-full" key={project.name}>
+              <div className="w-12 h-12 block-container">
+                <div className={`btn-back rounded-xl ${project.theme}`} />
+                <div className="flex items-center justify-center btn-front rounded-xl">
+                  <img
+                    src={project.iconUrl}
+                    alt={project.name}
+                    className="object-contain w-1/2 h-1/2"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col mt-5">
+                <h4 className="text-2xl font-semibold font-poppins">
+                  {project.name}
+                </h4>
+
+                <p className="mt-2 text-slate-500">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {project.skills?.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 text-sm bg-gray-200 rounded-full text-slate-700"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4 mt-5 font-poppins">
+                  <Link
+                    to={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-600"
+                  >
+                    Live Link
+                  </Link>
+
+                  {project.github && (
+                    <Link
+                      to={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-gray-700"
+                    >
+                      GitHub
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <hr className='border-slate-200' />
+      <hr className="border-slate-200 my-10" />
 
+      {/* ✅ NEW API PROJECTS (CTA ke upar show hoga) */}
+      <div className="my-16">
+        <h3 className="subhead-text">
+          React Native{" "}
+          <span className="font-semibold blue-gradient_text drop-shadow">
+            Projects
+          </span>
+        </h3>
+
+        {loading ? (
+          <p className="mt-5 text-slate-500">Loading projects...</p>
+        ) : (
+          <div className="grid gap-10 mt-10 md:grid-cols-2 lg:grid-cols-3">
+            {apiProjects.map((project) => (
+              <div
+                key={project._id}
+                className="overflow-hidden transition bg-white shadow-lg rounded-2xl hover:shadow-2xl"
+              >
+                {/* ✅ Project Image */}
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-48"
+                  />
+                )}
+
+                <div className="p-6">
+                  {/* ✅ Title */}
+                  <h4 className="text-xl font-semibold font-poppins">
+                    {project.title}
+                  </h4>
+
+                  {/* ✅ Full Description */}
+                  <p className="mt-3 text-slate-500 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* ✅ Skills */}
+                  {project.skills && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.skills.map((skill, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 text-sm bg-gray-200 rounded-full text-slate-700"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* ✅ Links */}
+                  <div className="flex items-center gap-6 mt-5 font-poppins">
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-600 hover:underline"
+                      >
+                        Live Link
+                      </a>
+                    )}
+
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-gray-700 hover:underline"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ✅ CTA (Sabse last me hi rahega) */}
+      <hr className="border-slate-200 my-10" />
       <CTA />
     </section>
   );
