@@ -137,7 +137,7 @@ export const projects = [
     theme: "btn-back-red",
     name: "Vishal Portfolio",
     description:
-      "Designed and built a responsive personal portfolio website showcasing projects, technical skills, and professional experience with smooth UI interactions.",
+      "Designed and built a responsive personal portfolio website projects, technical skills, and professional experience with smooth UI interactions.",
     skills: ["React.js", "Tailwind CSS", "Framer Motion"],
     link: "https://vishal-jangid-portfolio.netlify.app/",
     github: "https://github.com/vishaljangid786/macos-portfolio",

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import { Card } from "../components";
 
 const Certificate = () => {
   const [certificates, setCertificates] = useState([]);
@@ -31,9 +33,7 @@ const Certificate = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-xl font-semibold">
-        Loading Certificates...
-      </div>
+      <Loading title={'Certificates'} />
     );
   }
 
@@ -65,24 +65,14 @@ const Certificate = () => {
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {certificates.map((cert) => (
-          <div
+          <Card
             key={cert._id}
-            className="overflow-hidden transition duration-300 bg-white shadow-lg rounded-2xl hover:shadow-2xl"
-          >
-            <img
-              src={cert.image}
-              alt={cert.title}
-              className="object-cover p-2 rounded-xl w-full h-48"
-            />
-
-            <div className="p-5">
-              <h3 className="text-xl font-semibold">{cert.title}</h3>
-              <p className="mt-2 text-gray-500">Issued By: {cert.issuedBy}</p>
-              <p className="mt-1 text-sm text-gray-400">
-                {new Date(cert.createdAt).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
+            image={cert.image}
+            title={cert.title}
+            subtitle={`Issued By: ${cert.issuedBy}`}
+            date={cert.createdAt}
+            imageClassName="object-cover p-2 rounded-xl w-full h-48"
+          />
         ))}
       </div>
     </section>

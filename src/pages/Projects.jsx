@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { CTA } from "../components";
-import { projects } from "../constants"; // ❗ Static projects (old content)
-import { arrow } from "../assets/icons";
+import { CTA, Card } from "../components";
+import { projects } from "../constants"; 
+import Loading from "../components/Loading";
+import { ArrowRight } from "lucide-react";
 
 const Projects = () => {
   const [apiProjects, setApiProjects] = useState([]);
@@ -29,6 +30,12 @@ const Projects = () => {
 
     fetchProjects();
   }, []);
+
+  if(loading){
+    return (
+      <Loading title={'Projects'} />
+    );
+  }
 
   return (
     <section className="max-container">
@@ -86,14 +93,14 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-4 mt-5 font-poppins">
+                <div className="flex items-center justify-between gap-4 mt-10 font-poppins">
                   <Link
                     to={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-blue-600"
+                    className="font-semibold flex items-center gap-2 text-blue-600"
                   >
-                    Live Link
+                    Live Link <ArrowRight  className="inline-block " size={18} />
                   </Link>
 
                   {project.github && (
@@ -101,12 +108,13 @@ const Projects = () => {
                       to={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-semibold text-gray-700"
+                      className="font-semibold flex items-center gap-2 text-gray-700"
                     >
-                      GitHub
+                      GitHub <ArrowRight  className="inline-block "  size={18}/>
                     </Link>
                   )}
                 </div>
+                <hr className="mt-4"/>
               </div>
             </div>
           ))}
@@ -129,70 +137,22 @@ const Projects = () => {
         ) : (
           <div className="grid gap-10 mt-10 md:grid-cols-2 lg:grid-cols-3">
             {apiProjects.map((project) => (
-              <div
+              <Card
                 key={project._id}
-                className="overflow-hidden transition bg-white shadow-lg rounded-2xl hover:shadow-2xl"
-              >
-                {/* ✅ Project Image */}
-                {project.image && (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-48"
-                  />
-                )}
-
-                <div className="p-6">
-                  {/* ✅ Title */}
-                  <h4 className="text-xl font-semibold font-poppins">
-                    {project.title}
-                  </h4>
-
-                  {/* ✅ Full Description */}
-                  <p className="mt-3 text-slate-500 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* ✅ Skills */}
-                  {project.skills && (
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {project.skills.map((skill, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 text-sm bg-gray-200 rounded-full text-slate-700"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* ✅ Links */}
-                  <div className="flex items-center gap-6 mt-5 font-poppins">
-                    {project.liveLink && (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-blue-600 hover:underline"
-                      >
-                        Live Link
-                      </a>
-                    )}
-
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-gray-700 hover:underline"
-                      >
-                        GitHub
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+                image={project.image}
+                title={project.title}
+                description={project.description}
+                skills={project.skills}
+                links={[
+                  ...(project.liveLink
+                    ? [{ label: "Live Link", url: project.liveLink, className: "text-blue-600" }]
+                    : []),
+                  ...(project.github
+                    ? [{ label: "GitHub", url: project.github, className: "text-gray-700" }]
+                    : []),
+                ]}
+                imageClassName="object-cover w-full h-48"
+              />
             ))}
           </div>
         )}
