@@ -20,6 +20,15 @@ body:has(.card[data-color="blue"]:hover) {
 body:has(.card[data-color="green"]:hover) {
   background-color: rgb(var(--green-rgb) / 25%);
 }
+/* scrollbar hide */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 @layer utilities {
   .max-container {
