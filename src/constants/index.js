@@ -209,7 +209,7 @@ export const socialLinks = [
 ];
 
 export const projects = [
-  // 1. Doctor Appointment System
+  // 1. Doctor Appointment System200
   {
     iconUrl: snapgram,
     theme: "btn-back-purple",
