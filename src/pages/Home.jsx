@@ -101,7 +101,7 @@ const Home = () => {
           STATUS: ONLINE
         </div>
         
-        <h1 className="hero-title text-7xl md:text-[14rem] font-orbitron font-black text-white leading-none tracking-tighter">
+        <h1 className="hero-title text-4xl sm:text-8xl md:text-[12rem] lg:text-[14rem] font-orbitron font-black text-white leading-none tracking-tight break-words">
           VISHAL<br />
           <span className="glow-text-gold glitch" data-text="JANGID">JANGID</span>
         </h1>
@@ -112,14 +112,14 @@ const Home = () => {
 
       {/* Intro Section */}
       <section className="intro-section min-h-[80vh] flex items-center justify-center px-8 md:px-32">
-        <div className="intro-text max-w-4xl glass-card border-l-4 border-[#c5a059] p-12 bg-black/40">
+        <div className="intro-text max-w-4xl glass-card border-l-4 border-[#c5a059] p-6 sm:p-12 bg-black/40">
           <div className="flex items-center gap-4 mb-6">
             <span className="w-3 h-3 rounded-full bg-[#c5a059] animate-ping"></span>
-            <h2 className="text-3xl font-orbitron font-bold text-white uppercase tracking-widest">
+            <h2 className="text-2xl sm:text-3xl font-orbitron font-bold text-white uppercase tracking-widest">
               My Vision
             </h2>
           </div>
-          <p className="text-xl md:text-3xl text-gray-300 font-exo leading-relaxed font-light italic break-words">
+          <p className="text-lg sm:text-3xl text-gray-300 font-exo leading-relaxed font-light italic break-words">
             "I don't just write code, I build digital experiences that feel real and easy to use."
           </p>
         </div>
@@ -127,7 +127,7 @@ const Home = () => {
 
       {/* Scrolling Text Banner */}
       <section className="scrolling-text-container py-24 bg-white/5 overflow-hidden">
-        <div className="scrolling-text whitespace-nowrap text-9xl md:text-[18rem] font-orbitron font-black text-white/5 uppercase select-none">
+        <div className="scrolling-text whitespace-nowrap text-7xl md:text-[12rem] lg:text-[18rem] font-orbitron font-black text-white/5 uppercase select-none">
           BUILDING QUALITY APPS • MODERN DESIGN • QUALITY WORK • 
           BUILDING QUALITY APPS • MODERN DESIGN • QUALITY WORK • 
         </div>
@@ -135,14 +135,14 @@ const Home = () => {
 
       {/* Cards Section */}
       <section className="cards-section py-20 px-8 md:px-32 flex flex-col items-center">
-        <div className="mb-20 text-center">
-          <h2 className="text-5xl md:text-7xl font-orbitron font-bold text-white mb-4">
+        <div className="mb-20 text-center px-4">
+          <h2 className="text-4xl md:text-7xl font-orbitron font-bold text-white mb-4 break-words">
             Quick Links
           </h2>
-          <div className="h-1 w-24 bg-[#c5a059] mx-auto shadow-[0_0_15px_rgba(197,160,89,0.5)]"></div>
+          <div className="h-1 w-20 bg-[#c5a059] mx-auto shadow-[0_0_15px_rgba(197,160,89,0.5)]"></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-7xl perspective-1000">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-7xl perspective-1000">
           {[
             { title: "Projects", id: "projects", color: "#c5a059", icon: "01", desc: "Check out my latest web and mobile apps." },
             { title: "About", id: "about", color: "#4a5568", icon: "02", desc: "Learn more about my skills and experience." },

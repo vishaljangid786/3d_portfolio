@@ -20,10 +20,11 @@
     box-sizing: border-box;
 }
 
-html, body {
+html, body, #root {
     color: var(--text-color);
     font-family: "Exo 2", sans-serif;
     overflow-x: hidden;
+    width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, .font-orbitron {
@@ -45,7 +46,7 @@ h1, h2, h3, h4, h5, h6, .font-orbitron {
 
 @layer utilities {
     .max-container {
-        @apply max-w-7xl mx-auto px-8 sm:px-16 py-12 flex flex-col;
+        @apply max-w-7xl mx-auto px-4 sm:px-16 py-12 flex flex-col;
     }
 
     .section-padding {
@@ -74,7 +75,7 @@ h1, h2, h3, h4, h5, h6, .font-orbitron {
     }
 
     .glass-card {
-        @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8;
+        @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 sm:p-10;
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -266,4 +267,20 @@ html.lenis {
     0% { opacity: 0.1; }
     50% { opacity: 0.12; }
     100% { opacity: 0.1; }
+}
+
+/* Vertical Timeline Responsive Overrides */
+@media (max-width: 640px) {
+    .vertical-timeline-element-content {
+        padding: 1rem !important;
+        margin-left: 40px !important;
+    }
+    .vertical-timeline-element-icon {
+        width: 30px !important;
+        height: 30px !important;
+        left: 10px !important;
+    }
+    .vertical-timeline::before {
+        left: 24px !important;
+    }
 }

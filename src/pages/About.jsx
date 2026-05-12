@@ -53,76 +53,84 @@ const About = () => {
 
   return (
     <section ref={containerRef} id="about" className="max-container section-padding">
-      <h1 className="about-title text-5xl md:text-7xl font-orbitron font-bold text-white mb-8 break-words">
+      <h1 className="about-title text-4xl md:text-7xl font-orbitron font-bold text-white mb-8 break-words">
         About <span className="glow-text-gold">Me</span>
       </h1>
 
-      <div className="about-bio glass-card mb-20 border-l-4 border-l-[#c5a059]">
-        <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-exo break-words">
+      <div className="about-bio max-w-[85%] mx-auto glass-card mb-20 border-l-4 border-l-[#c5a059] !p-4 sm:!p-10">
+        <p className="text-sm sm:text-lg md:text-xl text-gray-300 leading-relaxed font-exo break-words whitespace-normal overflow-wrap-anywhere text-center">
           I am a passionate Full Stack Developer who loves building modern web applications. 
           I have experience working with React, Node.js, and MongoDB. I enjoy making 
           clean, easy-to-use interfaces and solving real-world problems with my code.
         </p>
       </div>
 
-      <div className="flex flex-col py-10">
-        <h3 className="tech-stack-header text-3xl font-orbitron font-bold text-[#c5a059] mb-12">
+      <div className="py-10 overflow-hidden">
+        <h3 className="tech-stack-header text-2xl sm:text-3xl font-orbitron font-bold text-[#c5a059] mb-8 px-2 text-center">
           My Tech Skills
         </h3>
 
-
-
-        <div className="relative overflow-hidden py-20 bg-white/5 border-y border-white/5">
-          {/* Moving Rows */}
-          <div className="flex flex-col gap-12">
+        <div className="relative overflow-hidden py-8 sm:py-20 bg-white/5 border-y border-white/5">
+          {/* Moving Rows - 4 Rows */}
+          <div className="flex flex-col gap-4 sm:gap-12">
             {/* Row 1: Left */}
-            <div className="marquee-container flex whitespace-nowrap gap-12 animate-marquee-left">
-              {[...skills, ...skills].map((skill, index) => (
-                <div
-                  key={`${skill.name}-1-${index}`}
-                  className="flex items-center gap-6 bg-black/40 border border-white/10 px-8 py-4 rounded-full hover:border-[#c5a059] transition-all duration-300 group cursor-default"
-                >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white p-2 group-hover:scale-110 transition-transform">
+            <div className="marquee-container flex whitespace-nowrap gap-4 sm:gap-12 animate-marquee-left">
+              {[...skills.slice(0, 4), ...skills.slice(0, 4)].map((skill, index) => (
+                <div key={`${skill.name}-1-${index}`} className="flex items-center gap-3 bg-black/40 border border-white/10 px-3 py-2 rounded-full">
+                  <div className="w-5 h-5 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white p-1">
                     <img src={skill.imageUrl} alt={skill.name} className="w-full h-full object-contain" />
                   </div>
-                  <span className="font-orbitron text-xl font-bold text-white group-hover:text-[#c5a059] transition-colors uppercase">
-                    {skill.name}
-                  </span>
+                  <span className="font-orbitron text-[9px] sm:text-xl font-bold text-white uppercase">{skill.name}</span>
                 </div>
               ))}
             </div>
 
             {/* Row 2: Right */}
-            <div className="marquee-container flex whitespace-nowrap gap-12 animate-marquee-right">
-              {[...skills.slice().reverse(), ...skills].map((skill, index) => (
-                <div
-                  key={`${skill.name}-2-${index}`}
-                  className="flex items-center gap-6 bg-black/40 border border-white/10 px-8 py-4 rounded-full hover:border-[#c5a059] transition-all duration-300 group cursor-default"
-                >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white p-2 group-hover:scale-110 transition-transform">
+            <div className="marquee-container flex whitespace-nowrap gap-4 sm:gap-12 animate-marquee-right">
+              {[...skills.slice(4, 8), ...skills.slice(4, 8)].map((skill, index) => (
+                <div key={`${skill.name}-2-${index}`} className="flex items-center gap-3 bg-black/40 border border-white/10 px-3 py-2 rounded-full">
+                  <div className="w-5 h-5 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white p-1">
                     <img src={skill.imageUrl} alt={skill.name} className="w-full h-full object-contain" />
                   </div>
-                  <span className="font-orbitron text-xl font-bold text-white group-hover:text-[#c5a059] transition-colors uppercase">
-                    {skill.name}
-                  </span>
+                  <span className="font-orbitron text-[9px] sm:text-xl font-bold text-white uppercase">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 3: Left */}
+            <div className="marquee-container flex whitespace-nowrap gap-4 sm:gap-12 animate-marquee-left">
+              {[...skills.slice(8, 12), ...skills.slice(8, 12)].map((skill, index) => (
+                <div key={`${skill.name}-3-${index}`} className="flex items-center gap-3 bg-black/40 border border-white/10 px-3 py-2 rounded-full">
+                  <div className="w-5 h-5 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white p-1">
+                    <img src={skill.imageUrl} alt={skill.name} className="w-full h-full object-contain" />
+                  </div>
+                  <span className="font-orbitron text-[9px] sm:text-xl font-bold text-white uppercase">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 4: Right */}
+            <div className="marquee-container flex whitespace-nowrap gap-4 sm:gap-12 animate-marquee-right">
+              {[...skills.slice(12), ...skills.slice(12)].map((skill, index) => (
+                <div key={`${skill.name}-4-${index}`} className="flex items-center gap-3 bg-black/40 border border-white/10 px-3 py-2 rounded-full">
+                  <div className="w-5 h-5 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-white p-1">
+                    <img src={skill.imageUrl} alt={skill.name} className="w-full h-full object-contain" />
+                  </div>
+                  <span className="font-orbitron text-[9px] sm:text-xl font-bold text-white uppercase">{skill.name}</span>
                 </div>
               ))}
             </div>
           </div>
-          
-          {/* Side Fades */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#08080a] to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#08080a] to-transparent z-10"></div>
         </div>
       </div>
 
-      <div className="py-20">
-        <h3 className="text-3xl font-orbitron font-bold text-[#c5a059] mb-12">
+      <div className="py-20 w-full overflow-hidden">
+        <h3 className="text-2xl sm:text-3xl font-orbitron font-bold text-[#c5a059] mb-12 px-2">
           Work Experience
         </h3>
-        
-        <div className="mt-12 dark-timeline">
-          <VerticalTimeline animate={true} lineColor="#333">
+
+        <div className="mt-12 dark-timeline w-[90vw]">
+          <VerticalTimeline animate={true} lineColor="#333" layout="1-column-left">
             {experiences.map((experience, index) => (
               <VerticalTimelineElement
                 key={experience.company_name}
@@ -133,10 +141,19 @@ const About = () => {
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   boxShadow: "none",
                   textAlign: "left",
-                  padding: "2rem",
+                  padding: "1rem",
+                  width: "calc(100% - 40px)",
+                  marginLeft: "40px",
                 }}
                 contentArrowStyle={{ borderRight: "7px solid rgba(255, 255, 255, 0.1)" }}
-                iconStyle={{ background: "#050505", border: `2px solid ${experience.iconBg}` }}
+                iconStyle={{
+                  background: "#050505",
+                  border: `2px solid ${experience.iconBg}`,
+                  boxShadow: `0 0 10px ${experience.iconBg}44`,
+                  width: "30px",
+                  height: "30px",
+                  left: "5px",
+                }}
                 icon={
                   <div className="flex items-center justify-center w-full h-full">
                     <img
@@ -147,16 +164,18 @@ const About = () => {
                   </div>
                 }
               >
-                <h3 className="text-xl font-orbitron font-bold text-[#c5a059]">
-                  {experience.title}
-                </h3>
-                <p className="text-[#4a5568] font-orbitron text-sm !m-0">
-                  {experience.company_name}
-                </p>
+                <div className="overflow-hidden">
+                  <h3 className="text-base sm:text-xl font-orbitron font-bold text-[#c5a059] break-all leading-tight">
+                    {experience.title}
+                  </h3>
+                  <p className="text-[#4a5568] font-orbitron text-[8px] sm:text-sm !m-0 uppercase tracking-tighter">
+                    {experience.company_name}
+                  </p>
+                </div>
 
-                <ul className="my-5 ml-5 space-y-2 list-disc text-gray-400 font-exo">
+                <ul className="my-4 ml-4 space-y-2 list-disc text-gray-400 font-exo">
                   {experience.points.map((point, index) => (
-                    <li key={`experience-point-${index}`} className="pl-1 text-sm">
+                    <li key={`experience-point-${index}`} className="pl-1 text-[10px] sm:text-sm leading-relaxed overflow-wrap-anywhere">
                       {point}
                     </li>
                   ))}

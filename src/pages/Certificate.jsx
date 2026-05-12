@@ -75,11 +75,11 @@ const Certificate = () => {
 
   return (
     <section ref={containerRef} id="certificate" className="max-container section-padding px-6 min-h-[600px] relative">
-      <h1 className="text-5xl font-orbitron font-bold text-white mb-8 break-words">
+      <h1 className="text-4xl font-orbitron font-bold text-white mb-8 break-words">
         My <span className="glow-text-gold">Certificates</span>
       </h1>
 
-      <p className="text-lg md:text-xl text-gray-300 font-exo leading-relaxed mb-12 max-w-3xl border-l-4 border-[#00f2ff] pl-6 py-4 glass-card break-words">
+      <p className="text-base md:text-xl text-gray-300 font-exo leading-relaxed mb-12 max-w-3xl border-l-4 border-[#00f2ff] pl-4 sm:pl-6 py-4 glass-card break-words">
         These are the certificates I have earned while learning new technologies. 
         Each one shows a new skill I have picked up.
       </p>

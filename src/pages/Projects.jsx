@@ -36,7 +36,7 @@ const Projects = () => {
   return (
     <section ref={containerRef} id="projects" className="max-container section-padding">
       <div className="projects-header">
-        <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-white mb-8 break-words">
+        <h1 className="text-4xl md:text-7xl font-orbitron font-bold text-white mb-8 break-words">
           My <span className="glow-text-gold">Projects</span>
         </h1>
 

@@ -31,7 +31,7 @@ const Resume = () => {
 
   return (
     <section className="max-container pt-32">
-      <h1 className="text-5xl font-orbitron font-bold text-white mb-8">
+      <h1 className="text-4xl font-orbitron font-bold text-white mb-8 break-words">
         My <span className="neon-text-cyan">Resume</span>
       </h1>
 
