@@ -1,143 +1,182 @@
-import {Canvas} from "@react-three/fiber";
-import {Suspense, useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import sakura from "../assets/sakura.mp3";
-import {HomeInfo, Loader} from "../components";
-import {soundoff, soundon} from "../assets/icons";
-import {Bird, Island, Plane, Sky} from "../models";
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-    const audioRef = useRef(new Audio(sakura));
-    audioRef.current.volume = 0.4;
-    audioRef.current.loop = true;
+  const containerRef = useRef();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-    const [currentStage, setCurrentStage] = useState(1);
-    const [isRotating, setIsRotating] = useState(false);
-    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-    useEffect(() => {
-        if (isPlayingMusic) {
-            audioRef.current.play();
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero Section Reveal
+      gsap.fromTo(".hero-title", 
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.5, ease: "expo.out" }
+      );
+
+      // Section 1: Intro
+      gsap.fromTo(".intro-text",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: ".intro-section",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         }
+      );
 
-        return () => {
-            audioRef.current.pause();
-        };
-    }, [isPlayingMusic]);
-
-    const adjustBiplaneForScreenSize = () => {
-        let screenScale, screenPosition;
-
-        // If screen width is less than 768px, adjust the scale and position
-        if (window.innerWidth < 768) {
-            screenScale = [1.5, 1.5, 1.5];
-            screenPosition = [0, -1.5, 0];
-        } else {
-            screenScale = [3, 3, 3];
-            screenPosition = [0, -4, -4];
+      // Section 2: Cards
+      gsap.fromTo(".home-card",
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cards-section",
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
         }
+      );
 
-        return [screenScale, screenPosition];
-    };
+      // Horizontal text scroll
+      gsap.to(".scrolling-text", {
+        xPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".scrolling-text-container",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
 
-    const adjustIslandForScreenSize = () => {
-        let screenScale, screenPosition;
+      // Update scroll progress
+      ScrollTrigger.create({
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: (self) => setScrollProgress(self.progress * 100),
+      });
 
-        if (window.innerWidth < 768) {
-            screenScale = [0.9, 0.9, 0.9];
-            screenPosition = [0, -6.5, -43.4];
-        } else {
-            screenScale = [1, 1, 1];
-            screenPosition = [0, -6.5, -43.4];
-        }
+    }, containerRef);
 
-        return [screenScale, screenPosition];
-    };
+    return () => ctx.revert();
+  }, []);
 
-    const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
-    const [islandScale, islandPosition] = adjustIslandForScreenSize();
+  return (
+    <div ref={containerRef} id="home" className="relative w-full overflow-hidden">
+      {/* Custom Scroll Progress Indicator */}
+      <div className="fixed left-8 top-1/2 -translate-y-1/2 h-64 w-[2px] bg-white/10 z-50 hidden md:block">
+        <div 
+          className="absolute top-0 left-0 w-full bg-[#c5a059] shadow-[0_0_15px_rgba(197,160,89,0.5)] transition-all duration-100"
+          style={{ height: `${scrollProgress}%` }}
+        ></div>
+        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 font-orbitron text-[10px] text-[#c5a059] rotate-90 whitespace-nowrap">
+          WELCOME: {Math.round(scrollProgress)}%
+        </div>
+      </div>
 
-    return (
-        <section className='w-full h-[92vh] relative '>
-            <div
-                className='hidden lg:block absolute left-10 bottom-1/3 h-[600px]  translate-y-1/2 z-10 animate-fade-in-up'>
-                <h1 className='text-8xl font-black uppercase select-none pointer-events-none bg-gradient-to-l from-blue-500 via-blue-400 to-transparent bg-clip-text text-transparent'
-                    style={{writingMode: 'vertical-rl', transform: 'rotate(180deg)'}}>
-                    Creative Developer
-                </h1>
-            </div>
-            {/*<div className={"absolute w-full top-0 bottom-0 left-0 right-0 bg-black/40 z-[999]"}/>*/}
+      {/* Hero Section */}
+      <section className="h-screen flex flex-col items-center justify-center text-center px-4 relative">
+        <div className="absolute top-20 left-10 font-orbitron text-[10px] text-gray-600 hidden md:block">
+          PORTFOLIO_V4.0<br />
+          LOCATION: INDIA<br />
+          STATUS: ONLINE
+        </div>
+        
+        <h1 className="hero-title text-7xl md:text-[14rem] font-orbitron font-black text-white leading-none tracking-tighter">
+          VISHAL<br />
+          <span className="glow-text-gold glitch" data-text="JANGID">JANGID</span>
+        </h1>
+        <p className="mt-8 text-xl font-orbitron text-[#c5a059] tracking-[0.4em] uppercase animate-pulse">
+          Full Stack Developer
+        </p>
+      </section>
 
-            {/*<div className='hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-10 animate-fade-in-up'>*/}
-            {/*    <h1 className='text-8xl font-black uppercase select-none pointer-events-none bg-gradient-to-t from-blue-500 via-blue-400 to-transparent bg-clip-text text-transparent'*/}
-            {/*        style={{writingMode: 'vertical-rl'}}>*/}
-            {/*        3D World Explorer*/}
-            {/*    </h1>*/}
-            {/*</div>*/}
-            <div
-                className='hidden lg:block absolute  h-[600px] right-10 top-1/3  -translate-y-1/2 z-10 animate-fade-in-down'>
-                <h1 className='text-8xl font-black  uppercase select-none pointer-events-none bg-gradient-to-r from-transparent to-blue-500 bg-clip-text text-transparent'
-                    style={{writingMode: 'vertical-rl', transform: 'rotate(0deg)'}}>
-                    3d World Explorer
-                </h1>
-            </div>
+      {/* Intro Section */}
+      <section className="intro-section min-h-[80vh] flex items-center justify-center px-8 md:px-32">
+        <div className="intro-text max-w-4xl glass-card border-l-4 border-[#c5a059] p-12 bg-black/40">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="w-3 h-3 rounded-full bg-[#c5a059] animate-ping"></span>
+            <h2 className="text-3xl font-orbitron font-bold text-white uppercase tracking-widest">
+              My Vision
+            </h2>
+          </div>
+          <p className="text-xl md:text-3xl text-gray-300 font-exo leading-relaxed font-light italic break-words">
+            "I don't just write code, I build digital experiences that feel real and easy to use."
+          </p>
+        </div>
+      </section>
 
-            <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-                {currentStage && <HomeInfo currentStage={currentStage}/>}
-            </div>
+      {/* Scrolling Text Banner */}
+      <section className="scrolling-text-container py-24 bg-white/5 overflow-hidden">
+        <div className="scrolling-text whitespace-nowrap text-9xl md:text-[18rem] font-orbitron font-black text-white/5 uppercase select-none">
+          BUILDING QUALITY APPS • MODERN DESIGN • QUALITY WORK • 
+          BUILDING QUALITY APPS • MODERN DESIGN • QUALITY WORK • 
+        </div>
+      </section>
 
-            <Canvas
-                className={`w-full h-screen bg-transparent ${
-                    isRotating ? "cursor-grabbing" : "cursor-grab"
-                }`}
-                camera={{near: 0.1, far: 1000}}
+      {/* Cards Section */}
+      <section className="cards-section py-20 px-8 md:px-32 flex flex-col items-center">
+        <div className="mb-20 text-center">
+          <h2 className="text-5xl md:text-7xl font-orbitron font-bold text-white mb-4">
+            Quick Links
+          </h2>
+          <div className="h-1 w-24 bg-[#c5a059] mx-auto shadow-[0_0_15px_rgba(197,160,89,0.5)]"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-7xl perspective-1000">
+          {[
+            { title: "Projects", id: "projects", color: "#c5a059", icon: "01", desc: "Check out my latest web and mobile apps." },
+            { title: "About", id: "about", color: "#4a5568", icon: "02", desc: "Learn more about my skills and experience." },
+            { title: "Certificates", id: "certificate", color: "#00f2ff", icon: "03", desc: "View my professional certifications." },
+            { title: "Contact", id: "contact", color: "#f8f9fa", icon: "04", desc: "Say hello and let's start a conversation." },
+          ].map((card) => (
+            <button 
+              key={card.title} 
+              onClick={() => scrollToSection(card.id)}
+              className="home-card relative glass-card group overflow-hidden border-t-2 pt-16 text-left"
+              style={{ borderColor: card.color }}
             >
-                <Suspense fallback={<Loader/>}>
-                    <directionalLight position={[1, 1, 1]} intensity={2}/>
-                    <ambientLight intensity={0.5}/>
-                    <pointLight position={[10, 5, 10]} intensity={2}/>
-                    <spotLight
-                        position={[0, 50, 10]}
-                        angle={0.15}
-                        penumbra={1}
-                        intensity={2}
-                    />
-                    <hemisphereLight
-                        skyColor='#b1e1ff'
-                        groundColor='#000000'
-                        intensity={1}
-                    />
+              <span className="absolute top-6 left-8 font-orbitron text-4xl text-white/10 group-hover:text-white/30 transition-colors">
+                {card.icon}
+              </span>
+              <h3 className="text-4xl font-orbitron font-bold text-white mb-6 group-hover:translate-x-2 transition-transform">
+                {card.title}
+              </h3>
+              <p className="text-gray-500 font-exo mb-10 text-sm tracking-wide">
+                {card.desc}
+              </p>
+              <div className="flex justify-between items-center group-hover:text-[#c5a059] transition-colors">
+                <span className="font-orbitron text-[10px] tracking-widest">CLICK_TO_SEE</span>
+                <span className="text-2xl">→</span>
+              </div>
+              {/* Animated corner decorations */}
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 opacity-0 group-hover:opacity-100 transition-opacity" style={{ borderColor: card.color }}></div>
+            </button>
+          ))}
+        </div>
+      </section>
 
-                    <Bird/>
-                    {/* <HoverCar /> */}
-                    <Sky isRotating={true}/>
-                    <Island
-                        isRotating={isRotating}
-                        setIsRotating={setIsRotating}
-                        setCurrentStage={setCurrentStage}
-                        position={islandPosition}
-                        rotation={[0.1, 4.7077, 0]}
-                        scale={islandScale}
-                    />
-                    <Plane
-                        isRotating={isRotating}
-                        position={biplanePosition}
-                        rotation={[0, 20.1, 0]}
-                        scale={biplaneScale}
-                    />
-                </Suspense>
-            </Canvas>
-
-            <div className='absolute bottom-2 left-2'>
-                <img
-                    src={!isPlayingMusic ? soundoff : soundon}
-                    alt='jukebox'
-                    onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-                    className='w-10 h-10 cursor-pointer object-contain'
-                />
-            </div>
-        </section>
-    );
+    </div>
+  );
 };
 
 export default Home;

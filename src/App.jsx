@@ -1,34 +1,32 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { Footer, Navbar } from "./components";
-import { About, Certificate, Contact, Home, Projects, Resume } from "./pages";
+import { About, Certificate, Contact, Home, Projects } from "./pages";
+import CyberScene from "./components/CyberScene";
+import SmoothScroll from "./components/SmoothScroll";
 
 const App = () => {
   return (
-    <main className='bg-slate-300/20'>
+    <main className="relative min-h-screen crt-overlay bg-[#08080a]">
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route
-            path='/*'
-            element={
-              <>
-                <Routes>
-                  <Route path='/about' element={<About />} />
-                  <Route path='/projects' element={<Projects />} />
-                  <Route path='/contact' element={<Contact />} />
-                  <Route path='/resume' element={<Resume />} />
-                  <Route path='/certificate' element={<Certificate />} />
-                </Routes>
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
+        <SmoothScroll>
+          <CyberScene />
+          <div className="relative z-10">
+            <Navbar />
+            <div className="flex flex-col">
+              <Home />
+              <About />
+              <Projects />
+              <Certificate />
+              <Contact />
+            </div>
+            <Footer />
+          </div>
+        </SmoothScroll>
       </Router>
     </main>
   );
 };
 
 export default App;
+
+

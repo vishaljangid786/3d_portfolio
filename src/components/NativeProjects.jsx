@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Loading from "./Loading";
-import Card from "./Card";
+import React, { useState } from "react";
 import ProjectDetailModal from "./ProjectDetailModal";
 import { nativeProjects } from "../constants";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
 const NativeProjects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-
   const openProjectModal = (project, index) => {
-    
     setSelectedProject(project);
     setCurrentProjectIndex(index);
     setIsModalOpen(true);
@@ -30,91 +26,88 @@ const NativeProjects = () => {
   };
 
   return (
-    <div className="my-16">
-      <h3 className="subhead-text">
-        React Native{" "}
-        <span className="font-semibold blue-gradient_text drop-shadow">
-          Projects
-        </span>
+    <div className="py-10">
+      <h3 className="text-3xl font-orbitron font-bold text-white mb-10">
+        Mobile <span className="glow-text-gold">Apps</span>
       </h3>
 
-     <div className="grid gap-10 mt-10 md:grid-cols-2 lg:grid-cols-3">
-  {nativeProjects.map((project, index) => (
-    <div
-      key={project.title}
-      className="group bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-    >
-      {/* Image */}
-      <div
-        className="relative cursor-pointer"
-        onClick={() => openProjectModal(project, index)}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
-        />
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {nativeProjects.map((project, index) => (
+          <div
+            key={project.title}
+            className="group relative flex flex-col glass-card border border-white/10 hover:border-gold transition-all duration-500 overflow-hidden"
+          >
+            {/* Image */}
+            <div
+              className="relative aspect-video cursor-pointer overflow-hidden"
+              onClick={() => openProjectModal(project, index)}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="font-orbitron text-xs bg-black/80 text-[#c5a059] px-4 py-2 border border-[#c5a059]">
+                  View Details
+                </span>
+              </div>
+            </div>
 
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-          <span className="text-white font-semibold text-lg">
-            View Details
-          </span>
-        </div>
+            {/* Content */}
+            <div className="p-6 flex flex-col flex-1">
+              <h4
+                className="text-xl font-orbitron font-bold text-white mb-3 group-hover:glow-text-gold transition-colors"
+                onClick={() => openProjectModal(project, index)}
+              >
+                {project.title}
+              </h4>
+
+              <p className="text-sm text-gray-400 font-exo line-clamp-3 mb-6">
+                {project.description}
+              </p>
+
+              {/* Skills */}
+              <div className="flex flex-wrap gap-2 mt-auto mb-6">
+                {project.skills?.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-0.5 text-[10px] font-orbitron border border-white/20 text-gray-500 rounded-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-4">
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-xs font-orbitron font-bold text-black bg-[#c5a059] hover:bg-white transition-all shadow-[0_0_10px_rgba(197,160,89,0.3)]"
+                  >
+                    LIVE <ExternalLink size={14} />
+                  </a>
+                )}
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-xs font-orbitron font-bold border border-white/20 text-white hover:border-[#c5a059] hover:text-[#c5a059] transition-all"
+                  >
+                    Code <ArrowRight size={14} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <h4
-          className="text-xl font-semibold font-poppins cursor-pointer group-hover:text-blue-600 transition"
-          onClick={() => openProjectModal(project, index)}
-        >
-          {project.title}
-        </h4>
-
-        <p className="mt-2 text-sm text-slate-500">
-          {project.description}
-        </p>
-
-        {/* Skills */}
-        <div className="flex flex-wrap gap-2 mt-4">
-          {project.skills?.map((skill, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 text-xs font-medium bg-slate-100 rounded-full text-slate-700"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-
-        {/* Buttons */}
-        <div className="flex gap-3 mt-6">
-          {project.liveLink && (
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-            >
-              Live <ArrowRight size={16} />
-            </a>
-          )}
-
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold border rounded-lg border-slate-300 hover:bg-slate-100 transition"
-            >
-              GitHub <ExternalLink size={16} />
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
 
       <ProjectDetailModal
         project={selectedProject}

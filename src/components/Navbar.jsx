@@ -1,105 +1,87 @@
 import { DownloadIcon, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const navItems = ["about", "projects", "certificate", "contact"];
+  const navItems = ["About", "Projects", "Certificate", "Contact"];
   const [isOpen, setIsOpen] = useState(false);
 
+  const scrollToSection = (id) => {
+    setIsOpen(false);
+    const element = document.getElementById(id.toLowerCase());
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <header className="w-full z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <NavLink to="/">
-          <h1 className="text-xl font-semibold shadow-lg px-3 py-2 rounded-lg">
-            VJ
-          </h1>
-        </NavLink>
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="text-2xl font-orbitron font-bold glow-text-gold tracking-tighter"
+        >
+          VJ<span className="animate-pulse">_</span>
+        </button>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7 font-medium text-lg">
+        <nav className="hidden md:flex items-center gap-8 font-orbitron text-sm uppercase tracking-widest">
           {navItems.map((path) => (
-            <NavLink
+            <button
               key={path}
-              to={`/${path}`}
-              className={({ isActive }) =>
-                `relative pb-1 transition-colors duration-300 ${
-                  isActive ? "text-blue-600" : "text-black"
-                }`
-              }
+              onClick={() => scrollToSection(path)}
+              className="relative transition-all duration-300 text-gray-400 hover:text-[#c5a059] group"
             >
-              {({ isActive }) => (
-                <>
-                  <span>{path.charAt(0).toUpperCase() + path.slice(1)}</span>
-                  <span
-                    className={`absolute left-1/2 -translate-x-1/2 bottom-0 h-[2px] bg-blue-600 transition-all duration-300 ${
-                      isActive ? "w-1/2 opacity-100" : "w-0 opacity-0"
-                    }`}
-                  ></span>
-                </>
-              )}
-            </NavLink>
+              <span>{path}</span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#c5a059] shadow-[0_0_10px_rgba(197,160,89,0.5)] transition-all duration-300 group-hover:w-full"></span>
+            </button>
           ))}
 
-          <NavLink
-            to="/resume"
-            className="flex items-center font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-300 hover:bg-transparent hover:text-blue-600 border-2 border-blue-600"
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 border border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(197,160,89,0.3)]"
           >
             Resume
-            <DownloadIcon className="ml-2" size={16} />
-          </NavLink>
+            <DownloadIcon size={14} />
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-[#c5a059]"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden absolute top-full left-0 w-full bg-black/95 border-b border-white/10 transition-all duration-500 overflow-hidden ${
+          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col w-full bg-white shadow-md font-medium">
+        <nav className="flex flex-col p-8 gap-6 font-orbitron text-lg text-center uppercase tracking-widest">
           {navItems.map((path) => (
-            <div key={path} className="w-full text-center">
-              <NavLink
-                to={`/${path}`}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `block w-full py-4 text-lg transition-colors duration-300 ${
-                    isActive
-                      ? "text-blue-600 bg-blue-50 font-semibold"
-                      : "text-black hover:bg-gray-50"
-                  }`
-                }
-              >
-                {path.charAt(0).toUpperCase() + path.slice(1)}
-              </NavLink>
-
-              <hr className="w-full border-gray-200" />
-            </div>
+            <button
+              key={path}
+              onClick={() => scrollToSection(path)}
+              className="text-gray-400 hover:text-[#c5a059]"
+            >
+              {path}
+            </button>
           ))}
 
-          {/* Resume Button */}
-          <div className="w-full text-center">
-            <NavLink
-              to="/resume"
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                `flex justify-center items-center gap-2 py-4 text-lg transition-colors duration-300 ${
-                  isActive
-                    ? "text-blue-600 bg-blue-50 font-semibold"
-                    : "text-black hover:bg-gray-50"
-                }`
-              }
-            >
-              Resume
-              <DownloadIcon size={16} />
-            </NavLink>
-          </div>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center gap-2 py-3 border border-[#c5a059] text-[#c5a059]"
+          >
+            Resume <DownloadIcon size={18} />
+          </a>
         </nav>
       </div>
     </header>

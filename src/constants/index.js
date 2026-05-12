@@ -176,11 +176,11 @@ export const experiences = [
     iconBg: "#2b77e7",
     date: "Jan 2025 - Apr 2025",
     points: [
-      "Developed and maintained responsive web applications using React.js for frontend and Node.js with Express for backend.",
-      "Designed and integrated RESTful APIs and connected applications with MongoDB for efficient data management.",
-      "Implemented authentication, form validation, and CRUD functionalities for real-world projects.",
-      "Collaborated with senior developers to optimize performance and improve user experience.",
-      "Gained hands-on experience in deployment, version control (Git), and debugging production-level issues.",
+      "I worked on making websites that look good on both mobile and computers using React and Node.js.",
+      "I built and connected different parts of the website to handle data smoothly using MongoDB.",
+      "I added secure login systems and made sure all forms work correctly for real projects.",
+      "I worked with senior team members to make the websites faster and easier to use.",
+      "I learned how to host websites and fix problems when they happen.",
     ],
   },
 ];
@@ -215,7 +215,7 @@ export const projects = [
     theme: "btn-back-purple",
     name: "Doctor Appointment System",
     description:
-      "Full stack doctor appointment booking platform with admin panel and patient management system.",
+      "A complete system for patients to book doctor appointments online, with a special panel for admins.",
     desc2: `
 The Doctor Appointment System is a comprehensive web application designed to streamline the process of booking medical appointments while providing a secure and efficient platform for both patients and doctors. Patients can browse available doctors, view schedules, and book appointments in real-time, ensuring convenience and time efficiency. The platform allows users to maintain profiles, track medical history, and receive notifications for upcoming appointments for a seamless patient experience.
 
@@ -244,7 +244,7 @@ The interface is fully responsive, working seamlessly across desktops, tablets, 
     theme: "btn-back-purple",
     name: "Doctor Admin Panel",
     description:
-      "Admin panel for managing doctor appointments and patient data.",
+      "An easy-to-use panel for admins to manage doctor timings and patient records.",
     desc2: `
 The Doctor Admin Panel is a powerful web interface allowing administrators to efficiently manage appointments, doctor schedules, and patient records in real-time. Administrators can approve or reject bookings, monitor doctor availability, and maintain comprehensive patient history securely. Role-based authentication ensures data privacy and system integrity, restricting sensitive information to authorized users only.
 
@@ -272,7 +272,7 @@ Overall, the Doctor Admin Panel demonstrates a modern full-stack solution integr
     iconUrl: vj1,
     theme: "btn-back-pink",
     name: "Vk Marketing",
-    description: "Marketing platform connecting customers and sellers.",
+    description: "A platform that helps sellers show their products to customers easily.",
     desc2: `
 Vk Marketing is a comprehensive marketing platform designed to bridge the gap between customers and sellers by enabling targeted promotions, lead generation, and revenue tracking. Users can create campaigns, manage product listings, track analytics, and interact with potential customers, creating a complete digital marketing ecosystem.
 
@@ -301,7 +301,7 @@ Security and data integrity are prioritized through encrypted authentication and
     iconUrl: iphone1,
     theme: "btn-back-green",
     name: "iPhone 15 Pro Website Clone",
-    description: "Apple-inspired landing page with advanced animations.",
+    description: "A beautiful website inspired by Apple, showing off my animation skills.",
     desc2: `
 This iPhone 15 Pro Website Clone is a visually rich landing page inspired by Apple’s official website. Designed for an immersive user experience, the page incorporates smooth scrolling, animated transitions, and interactive canvas-based elements. Users can explore the product’s features, design details, and specifications through a responsive and dynamic interface.
 
@@ -327,7 +327,7 @@ Performance optimizations, including lazy loading and optimized image handling, 
     iconUrl: portfolio1,
     theme: "btn-back-red",
     name: "Vishal Portfolio",
-    description: "Personal portfolio showcasing projects and skills.",
+    description: "My personal website where I show all my cool projects and skills.",
     desc2: `
 Vishal Portfolio is a responsive and interactive personal website that highlights professional projects, skills, and achievements. Built using React.js for dynamic front-end interactivity, Tailwind CSS for modern styling, and Framer Motion for smooth animations, the site is optimized for desktop, tablet, and mobile devices.
 
@@ -353,7 +353,7 @@ Accessibility and usability are considered throughout, with clear typography, st
     iconUrl: ts1,
     theme: "btn-back-black",
     name: "3D T-Shirt Customizer",
-    description: "Interactive 3D product customization web app.",
+    description: "A fun way to design and see your own 3D T-shirts online.",
     desc2: `
 The 3D T-Shirt Customizer is an interactive web application that allows users to modify T-shirt designs in real-time. Using Three.js and React Three Fiber, the application renders 3D models of clothing products where users can change colors, textures, and patterns with instant visual feedback.
 
@@ -380,7 +380,7 @@ The application also includes functionality for previewing multiple variations, 
     iconUrl: game1,
     theme: "btn-back-yellow",
     name: "Gaming Landing Page",
-    description: "High-quality animated gaming website.",
+    description: "A high-quality website for gaming lovers with smooth animations.",
     desc2: `
 The Gaming Landing Page is a modern website designed to showcase interactive and visually engaging content for gaming projects. Built using React.js and GSAP for animation, the platform incorporates smooth transitions, interactive sections, and high-quality visual elements. CSS animations complement the JS effects to enhance engagement.
 
@@ -407,7 +407,7 @@ This project demonstrates proficiency in front-end development, animation techni
     iconUrl: significo1,
     theme: "btn-back-blue",
     name: "Significo App",
-    description: "Modern eCommerce web application for products.",
+    description: "A modern online shop where you can buy products easily.",
     desc2: `
 Significo is a modern eCommerce platform that allows users to browse and purchase clothing products efficiently. Built with React.js and Redux for state management, along with Firebase for backend support, the platform offers real-time updates, secure authentication, and smooth shopping cart functionality.
 
@@ -434,7 +434,7 @@ Significo demonstrates an effective combination of frontend and backend technolo
     iconUrl: brainwave1,
     theme: "btn-back-cyan",
     name: "Brainwave AI Platform",
-    description: "AI-powered SaaS landing page with features & pricing.",
+    description: "A smart website showing what AI can do with simple pricing.",
     desc2: `
 Brainwave AI Platform is a modern SaaS web application designed to showcase AI-powered tools, pricing plans, and advanced product features. Built using React.js, Tailwind CSS, GSAP, and Framer Motion, it offers dynamic animations, responsive layouts, and interactive sections for an engaging user experience.
 
@@ -461,7 +461,7 @@ Brainwave demonstrates full-stack design principles, combining advanced frontend
     iconUrl: korean1,
     theme: "btn-back-teal",
     name: "Korean Canvas Animation Website",
-    description: "Interactive website with 300+ canvas elements on scroll.",
+    description: "A cool website that changes as you scroll, with lots of animations.",
     desc2: `
 The Korean Canvas Animation Website is an experimental web project designed to render over 300 canvas elements in real-time while scrolling, creating a cinematic and immersive visual experience. Built using JavaScript, GSAP, and Scroll Animations, the website demonstrates advanced frame rendering techniques optimized for performance.
 
@@ -487,7 +487,7 @@ The interface is responsive, ensuring consistent visual storytelling across desk
     iconUrl: lazarev1,
     theme: "btn-back-orange",
     name: "Lazarev Agency Clone",
-    description: "Animated agency website with GSAP and modern frameworks.",
+    description: "A professional-looking agency website with very smooth scrolling.",
     desc2: `
 The Lazarev Agency Clone is a high-end animated website inspired by Lazarev, designed to showcase agency projects with immersive storytelling. Built using HTML, CSS, JavaScript, GSAP, and Locomotive Scroll, the website features smooth scroll interactions, responsive design, and interactive sections for portfolio presentation.
 
@@ -656,4 +656,28 @@ The interface is intuitive and responsive, offering smooth navigation and intera
       "Responsive and secure mobile UI",
     ],
   },
+];
+
+export const certificates = [
+  {
+    _id: "cert1",
+    title: "Full Stack Web Development",
+    issuedBy: "Udemy",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    _id: "cert2",
+    title: "React Native Advanced",
+    issuedBy: "Coursera",
+    image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    _id: "cert3",
+    title: "Data Science Specialization",
+    issuedBy: "IBM",
+    image: "https://images.unsplash.com/photo-1551288049-bbbda536ad37",
+    createdAt: new Date().toISOString(),
+  }
 ];
